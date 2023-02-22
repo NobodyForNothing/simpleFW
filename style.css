@@ -1,5 +1,28 @@
+@font-face {
+  font-family: 'VarelaRound-Regular';
+  src: url('res/fonts/Varela_Round/VarelaRound-Regular.eot'); /* IE9 Compat Modes */
+  src: url('res/fonts/Varela_Round/VarelaRound-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('res/fonts/Varela_Round/VarelaRound-Regular.woff') format('woff'), /* Modern Browsers */
+       url('res/fonts/Varela_Round/VarelaRound-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('res/fonts/Varela_Round/VarelaRound-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('res/fonts/Quicksand/Quicksand-VariableFont_wght.eot'); /* IE9 Compat Modes */
+  src: url('res/fonts/Quicksand/Quicksand-VariableFont_wght.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('res/fonts/Quicksand/Quicksand-VariableFont_wght.woff') format('woff'), /* Modern Browsers */
+       url('res/fonts/Quicksand/Quicksand-VariableFont_wght.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('res/fonts/Quicksand/Quicksand-VariableFont_wght.svg') format('svg'); /* Legacy iOS */
+}
+
 body {
   --bar-thickness-px: 50px;
+  font-family: 'VarelaRound-Regular'; /*'Quicksand'*/
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 h1 {
   margin-bottom: -12px;
