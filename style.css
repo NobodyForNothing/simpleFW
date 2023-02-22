@@ -1,21 +1,30 @@
 body {
   --bar-thickness-px: 50px;
 }
-
+h1 {
+  margin-bottom: -12px;
+}
 img {
   max-height: 95%;
 }
 a {
   max-height: 100%;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--link-unvisited);
+}
+a:visited {
+
 }
 
 .light-theme {
   --primary: #000;
   --bg-primary: #fff;
-  --bg-secondary: #004B76;
-  --bg-text: #009efa;
+  --bg-secondary: #009efa; /*#f9f9fb for better white*/
+  --bg-text: var(--bg-primary);
   --button-bg: var(--bg-primary);
   --button-bg-hover: #aaa;
+  --link-unvisited: #009efa;
 
   color: var(--primary);
   background-color: var(--bg-primary);
@@ -28,6 +37,7 @@ a {
   --bg-text: #101010;
   --button-bg: var(--bg-secondary);
   --button-bg-hover: #576164AA;
+  --link-unvisited: #009efa;
 
   color: var(--primary);
   background-color: var(--bg-primary);

@@ -3,6 +3,26 @@
   align-self:center;
   width: 50%;
   padding: calc(var(--bar-thickness-px) + 10px);
+  padding-left: var(--bar-thickness-px);
+  padding-right: var(--bar-thickness-px);
   
   background-color: var(--bg-text);
+}
+
+.toc-menu { 
+  margin: calc(var(--bar-thickness-px) + 10px);
+  margin-left: var(--bar-thickness-px);
+  height: 100%;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.toc-list {
+  list-style-type: none;
+  padding-left: 10px;
+  margin-top: -15px;
 }

@@ -51,6 +51,9 @@
   padding-right: 8px;
   border-radius: 1000px;
 }
+.bar a {
+  color: var(--primary);
+}
 .bar .clickable:hover {
   background-color: var(--button-bg-hover);
 }

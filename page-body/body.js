@@ -1,10 +1,4 @@
-export class AppBody {
-  static MAIN = new AppBody('main');
-
-  static TYPE_TITLE = 0;
-  static TYPE_PARAGRAPH = 1;
-  static TYPE_OTHER = -1;
-  
+class _AppBody {
   #id;
   #rendered=false;
   #elements=[];
@@ -89,6 +83,7 @@ export class AppBody {
           // might create empty section, if beginns with title
           textBody.appendChild(lastSection);
           lastSection = document.createElement('section');
+          lastSection.id = `#${element.content.firstChild.textContent.toLowerCase().replace(' ', '-')}`;
           lastSection.appendChild(element.content); // todo add section href system
           break;
         case AppBody.TYPE_PARAGRAPH:
@@ -103,8 +98,39 @@ export class AppBody {
     textBody.appendChild(lastSection);
 
     document.body.appendChild(textBody);
+
+    // add list of headings in new element, to make navigation simpler
+    // TODO: make navigation work; overflow when scaled big
+    const oldNavMenu = document.getElementsByClassName('toc-menu')[0];
+    if(oldNavMenu) oldNavMenu.remove();
+
+    const navMenu = document.createElement('nav');
+    const navList = document.createElement('ul');
+    navMenu.classList.add('toc-menu'); // toc - table of contents
+    navList.classList.add('toc-list');
+
+    const navMenuHeading = document.createElement('h2');
+    navMenuHeading.classList.add('toc-title');
+    navMenuHeading.innerText = 'Contents';
+    navMenu.appendChild(navMenuHeading);
+    // add elements
+    this.#elements.forEach(element => {
+      if (element.type !== AppBody.TYPE_TITLE) return;
+      const titleText = element.content.firstChild.textContent;
+      const elementListItem = document.createElement('li');
+      const elementNavItem = document.createElement('a');
+
+      elementListItem.id = `toc-${titleText.toLowerCase().replace(' ', '-')}`;
+      elementNavItem.textContent = titleText;
+      elementNavItem.href = `#${titleText.toLowerCase().replace(' ', '-')}`
+
+      elementListItem.appendChild(elementNavItem);
+      navList.appendChild(elementListItem);
+    });
+    navMenu.appendChild(navList);
+    document.body.appendChild(navMenu);
+
     this.#rendered = true;
-    console.log('re')
   }
 
   set visible(bool) {
@@ -112,4 +138,12 @@ export class AppBody {
     this.#rendered = false;
     this.render();
   }
+}
+
+export class AppBody { // don't expose constructor
+  static MAIN = new _AppBody('main'); // only one can exist
+
+  static TYPE_TITLE = 0;
+  static TYPE_PARAGRAPH = 1;
+  static TYPE_OTHER = -1;
 }

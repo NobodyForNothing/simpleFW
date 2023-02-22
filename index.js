@@ -1,7 +1,7 @@
 import { AppBar } from "./app-bar/bar.js"
 import { AppBody } from "./page-body/body.js";
 
-function init() {
+function testWebsite() {
   const logo = new Image();
   logo.src = 'favicon.svg';
   logo.classList.add('clickable')
@@ -33,4 +33,4 @@ function init() {
   
 }
 
-document.body.onload = init;
+document.body.onload = testWebsite;
