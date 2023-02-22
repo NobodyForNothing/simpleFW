@@ -83,7 +83,7 @@ class _AppBody {
           // might create empty section, if beginns with title
           textBody.appendChild(lastSection);
           lastSection = document.createElement('section');
-          lastSection.id = `#${element.content.firstChild.textContent.toLowerCase().replace(' ', '-')}`;
+          lastSection.id = element.content.firstChild.textContent.toLowerCase().replace(' ', '-');
           lastSection.appendChild(element.content); // todo add section href system
           break;
         case AppBody.TYPE_PARAGRAPH:
@@ -100,7 +100,7 @@ class _AppBody {
     document.body.appendChild(textBody);
 
     // add list of headings in new element, to make navigation simpler
-    // TODO: make navigation work; overflow when scaled big
+    // TODO: fix overflow when scaled big; offset anchor
     const oldNavMenu = document.getElementsByClassName('toc-menu')[0];
     if(oldNavMenu) oldNavMenu.remove();
 
@@ -120,7 +120,6 @@ class _AppBody {
       const elementListItem = document.createElement('li');
       const elementNavItem = document.createElement('a');
 
-      elementListItem.id = `toc-${titleText.toLowerCase().replace(' ', '-')}`;
       elementNavItem.textContent = titleText;
       elementNavItem.href = `#${titleText.toLowerCase().replace(' ', '-')}`
 
