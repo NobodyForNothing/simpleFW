@@ -1,0 +1,34 @@
+body {
+  --bar-thickness-px: 50px;
+}
+
+img {
+  max-height: 95%;
+}
+a {
+  max-height: 100%;
+}
+
+.light-theme {
+  --primary: #000;
+  --bg-primary: #fff;
+  --bg-secondary: #004B76;
+  --bg-text: #009efa;
+  --button-bg: var(--bg-primary);
+  --button-bg-hover: #aaa;
+
+  color: var(--primary);
+  background-color: var(--bg-primary);
+}
+
+.dark-theme {
+  --primary: #fff;
+  --bg-primary: #000;
+  --bg-secondary: #005C45;
+  --bg-text: #101010;
+  --button-bg: var(--bg-secondary);
+  --button-bg-hover: #576164AA;
+
+  color: var(--primary);
+  background-color: var(--bg-primary);
+}

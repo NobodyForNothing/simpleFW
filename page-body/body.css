@@ -1,0 +1,8 @@
+.textbody {
+  margin: auto;
+  align-self:center;
+  width: 50%;
+  padding: calc(var(--bar-thickness-px) + 10px);
+  
+  background-color: var(--bg-text);
+}

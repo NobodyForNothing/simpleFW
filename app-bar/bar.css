@@ -1,0 +1,56 @@
+.top {
+  padding-left: var(--bar-thickness-px);
+  height: var(--bar-thickness-px);
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.left {
+  padding-top: var(--bar-thickness-px);
+  width: var(--bar-thickness-px);
+  bottom: 0;
+  left: 0;
+  top: 0;
+}
+
+.right {
+  width: var(--bar-thickness-px);
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+
+.bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-left: var(--bar-thickness-px);
+  height: var(--bar-thickness-px);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: nowrap !important;
+  box-sizing: border-box;
+  line-height: 1.5;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  overflow: hidden;
+  position: fixed;
+}
+
+.bar div {
+  max-height: 95%;
+}
+
+.bar .clickable {
+  background-color: transparent;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 1000px;
+}
+.bar .clickable:hover {
+  background-color: var(--button-bg-hover);
+}
