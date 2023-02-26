@@ -24,6 +24,8 @@ body {
 }
 h1 {
   margin-bottom: -12px;
+  margin-left: -5px;
+  font-size: xx-large;
 }
 img {
   max-height: 95%;
