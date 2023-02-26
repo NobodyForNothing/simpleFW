@@ -74,7 +74,7 @@ class _AppBody {
    * @param {boolean} append 
    * @param {number} [opt_position] ignored when append is true 
    */
-  addParagraph(text, append=true, opt_position) {
+  addParagraph(text, append=true, opt_position) { // todo: support simple markdown
     const domParagraph = document.createElement('p');
     domParagraph.textContent = text;
     this.addElementFromJson({

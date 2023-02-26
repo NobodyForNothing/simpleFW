@@ -23,6 +23,7 @@ function testWebsite() {
 
   // define mainpage
   AppBody.setCurrent(mainPage);
+  AppBody.MAIN.addParagraph('You stumbled uppon this testing page, didn\'t you...');
   AppBody.MAIN.addTitle('Paragraph 1');
   AppBody.MAIN.addParagraph('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor neque vitae. Est pellentesque elit ullamcorper dignissim cras tincidunt. Orci ac auctor augue mauris augue neque gravida in. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Id neque aliquam vestibulum morbi. In pellentesque massa placerat duis ultricies lacus. Consequat nisl vel pretium lectus quam id leo. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Cras pulvinar mattis nunc sed. At risus viverra adipiscing at in. Enim sit amet venenatis urna cursus eget. At varius vel pharetra vel turpis nunc eget lorem. Donec enim diam vulputate ut pharetra sit amet. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.');
   AppBody.MAIN.addTitle('Paragraph 2');
@@ -67,7 +68,7 @@ for file_name in sorted(python_files):
     AppBody.setCurrent(docPage);
     AppBody.MAIN.addTitle('Overview');
     AppBody.MAIN.addParagraph('SimpleFw is meant to be a framework that I understand and that limits website to the mere texts of which the website consists, while still beeing a single side app. Its primary use lies in delivering static content. And while a serverside app would be more performant, it also would make deployment harder. A compatibility with smartphones is planed, but not ready yet.');
-    AppBody.MAIN.addParagraph('As of now the framework supports adding a Top bar for navigation (AppBar) and managing different page contents (AppBody). The style is very set in place although a light mode is developed on the side but not ready yet.');
+    AppBody.MAIN.addParagraph('As of now the framework supports adding a Top bar for navigation (AppBar) and managing different page contents (AppBody). The style is very set in place although a light mode is developed on the side but not ready yet. In case you want to use this and need a feature that this framework doesn\'t provide, just implement it yourself.');
 
     AppBody.MAIN.addTitle('AppBar');
     AppBody.MAIN.addParagraph('The AppBar can be put on one of the 4 sides of the screen. It is recommended to put it on the top as this is most common and users therefore are more likely to understand it. The AppBar needs to be imported like shown in the following:');
@@ -77,7 +78,7 @@ for file_name in sorted(python_files):
 AppBar.LEFT.visible = true;
 ...`, 'js');
     AppBody.MAIN.addParagraph('As shown above the AppBar needs to be set to visible to work properly. However, for performance reasons it is recomended to first setup the bar before setting it to visible as every change to the visible bar forces a full update.');
-    AppBody.MAIN.addParagraph('Example:'); // todo document methods
+    AppBody.MAIN.addParagraph('Example:');
     AppBody.MAIN.addCode(`const logo = new Image();
 logo.src = 'favicon.svg';
 logo.classList.add('clickable')
@@ -89,14 +90,15 @@ AppBar.TOP.addText('SimpleFw Docs', ()=>{AppBody.setCurrent(docPage)});
 AppBar.TOP.addText('Pytal2 Docs', ()=>{AppBody.setCurrent(pytalDocPage)});
 
 AppBar.TOP.visible = true;`,'js');
+    AppBody.MAIN.addParagraph('As you can see the AppBar supports adding html elements via the `appendElement` method as well as just adding text via the `addText` method. When adding elements, you need to take care of detecting clicks and adding a clickable class yourself. When using the addText method, you can just specify the function as a second optional parameter and the framework takes care of it.');
 
-AppBody.MAIN.addTitle('AppBody');
-AppBody.MAIN.addParagraph('The AppBody class is meant to create and manage different _AppBody objects. It needs to be imported like this:');
-AppBody.MAIN.addCode('import { AppBody } from "./page-body/body.js";', 'js');
-AppBody.MAIN.addParagraph('When creating a page the reference is returned. Although in the back it is only an upwards counting number referencing an array position, it should be stored, to avoid confusion and ensure compatability with upcomming versions.');
-AppBody.MAIN.addCode('const mainPage = AppBody.createBody();','js');
-AppBody.MAIN.addParagraph('To edit and display the body, you need to swith to it. Editing a body, that isn\'t displayed, is currently not possible.');
-AppBody.MAIN.addCode('AppBody.setCurrent(mainPage);','js');
+    AppBody.MAIN.addTitle('AppBody');
+    AppBody.MAIN.addParagraph('The AppBody class is meant to create and manage different _AppBody objects. It needs to be imported like this:');
+    AppBody.MAIN.addCode('import { AppBody } from "./page-body/body.js";', 'js');
+    AppBody.MAIN.addParagraph('When creating a page the reference is returned. Although in the back it is only an upwards counting number referencing an array position, it should be stored, to avoid confusion and ensure compatability with upcomming versions.');
+    AppBody.MAIN.addCode('const mainPage = AppBody.createBody();','js');
+    AppBody.MAIN.addParagraph('To edit and display the body, you need to swith to it. Editing a body, that isn\'t displayed, is currently not possible.');
+    AppBody.MAIN.addCode('AppBody.setCurrent(mainPage);','js');
 
 
 
