@@ -1,3 +1,11 @@
+/**
+ * @typedef BodyElement
+ * @type {object}
+ * @property {HTMLElement} content - content to be displayed.
+ * @property {number} type - how the element should be treated. Defined in AppBody.TYPE_<type>.
+ * @property {number} position - where to put the element on the page.
+ */
+
 class _AppBody {
   #id;
   #rendered=false;
@@ -10,6 +18,12 @@ class _AppBody {
     this.visible = visible;
   }
 
+  /**
+   * manually add element to page
+   * @param {BodyElement} element element to display, position gets ignored when append is true
+   * @param {boolean} append 
+   * @returns 
+   */
   addElementFromJson(element, append) {
     // check for required attributes
     if (!element || isNaN(element.type)) return console.error('Elements added to AppBody must declare type and content');
@@ -39,15 +53,27 @@ class _AppBody {
     this.#rendered = false;
     this.render();
   }
+  /**
+   * add title to page, automatically added to table of contents
+   * @param {String} text 
+   * @param {boolean} append 
+   * @param {number} [opt_position] ignored when append is true 
+   */
   addTitle(text, append=true, opt_position) {
     const domTitle = document.createElement('h1');
     domTitle.textContent = text;
     this.addElementFromJson({
       type: AppBody.TYPE_TITLE,
       content: domTitle,
-      position: opt_position
+      position: [opt_position]
     }, append)
   }
+  /**
+   * adds paragraph to page, automatically added to  the section of the preceeding title
+   * @param {String} text 
+   * @param {boolean} append 
+   * @param {number} [opt_position] ignored when append is true 
+   */
   addParagraph(text, append=true, opt_position) {
     const domParagraph = document.createElement('p');
     domParagraph.textContent = text;
@@ -57,6 +83,14 @@ class _AppBody {
       position: opt_position
     }, append)
   }
+  /**
+   * adds highlighted code to the page, automatically added to the section of the preceeding title
+   * @param {String} text code to add; please note, that formating is not changed
+   * @param {String} language language the code is written in, all options in /highlight/languages/
+   * @param {boolean} copyBtn wheather or not a button to copy the text should be added, defaults to true
+   * @param {boolean} append 
+   * @param {number} [opt_position] ignored when append is true 
+   */
   addCode(text, language, copyBtn=true, append=true, opt_position) {
     // create code block
     const codeBlockHtml = hljs.highlight(text, {language: language, ignoreIllegals: true}).value;
@@ -87,10 +121,18 @@ class _AppBody {
     }, append);
   }
 
+  /**
+   * manually render page
+   * @returns true if the render was performed
+   */
   render() {
-    if (this.#rendered) return;
+    if (this.#rendered) return false;
     this._forceRender();
   }
+  /**
+   * force rerender of page
+   * @returns 
+   */
   _forceRender() {
     const oldBody = document.getElementById(this.#id);
     if(oldBody) oldBody.remove();

@@ -18,20 +18,29 @@ export class AppBar {
     else this.#id = ''+Math.random();
   }
 
-  appendElement(domElement, alignRight = false) { // TODO: alignRight property
+  /**
+   * Add element to appBar
+   * @param {HTMLElement} domElement 
+   */
+  appendElement(domElement) {
     this.#elements.push(domElement);
     this.#rendered = false;
     this.render();
   }
 
-  addText(text, opt_callback, alignRight=false) {
+  /**
+   * Add clickable text to menu
+   * @param {String} text 
+   * @param {Function} [opt_callback]
+   */
+  addText(text, opt_callback) {
     const outer = document.createElement("div");
     const inner = document.createElement("a");
     outer.classList.add("clickable");
     inner.innerText = text;
     inner.onclick = opt_callback;
     outer.appendChild(inner);
-    this.appendElement(outer, alignRight);
+    this.appendElement(outer);
   }
 
   set visible(bool) {
@@ -43,10 +52,19 @@ export class AppBar {
     return !this.#hidden
   }
 
+  /**
+   * manually render page
+   * @returns success
+   */
   render() {
-    if (this.#rendered) return;
+    if (this.#rendered) return false;
     this._forceRender();
+    return true;
   }
+  /**
+   * force rerender of page
+   * @returns 
+   */
   _forceRender() {
     const oldBar = document.getElementById(this.#id);
     if(oldBar) oldBar.remove();
