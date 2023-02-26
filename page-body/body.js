@@ -152,8 +152,13 @@ class _AppBody {
           // might create empty section, if beginns with title
           textBody.appendChild(lastSection);
           lastSection = document.createElement('section');
-          lastSection.id = element.content.firstChild.textContent.toLowerCase().replace(' ', '-');
-          lastSection.appendChild(element.content); // todo add section href system
+          
+          // to fix skipping to the section, a invisible element is added, that maintains the offset of the top bar
+          const tocAnchor = document.createElement('a');
+          tocAnchor.classList.add('toc-document-anchor');
+          tocAnchor.id = element.content.firstChild.textContent.toLowerCase().replace(' ', '-');
+          lastSection.append(tocAnchor);
+          lastSection.appendChild(element.content);
           break;
         case AppBody.TYPE_PARAGRAPH:
           lastSection.appendChild(element.content);

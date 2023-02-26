@@ -27,6 +27,11 @@
   margin-top: -15px;
 }
 
+.toc-document-anchor {
+  position: absolute;
+  margin-top: calc(var(--bar-thickness-px)*-1.2);
+}
+
 .code {
   position: relative;
   padding: 10px;
