@@ -1,4 +1,4 @@
-import { AppBar } from "./app-bar/bar.js"
+import { AppBar } from "./app-bar/bar.js";
 import { AppBody } from "./page-body/body.js";
 
 function testWebsite() {
@@ -60,6 +60,44 @@ for file_name in sorted(python_files):
             print ('    ' + line.rstrip())
 
     print()`, 'python');
+
+
+
+    // define doc page
+    AppBody.setCurrent(docPage);
+    AppBody.MAIN.addTitle('Overview');
+    AppBody.MAIN.addParagraph('SimpleFw is meant to be a framework that I understand and that limits website to the mere texts of which the website consists, while still beeing a single side app. Its primary use lies in delivering static content. And while a serverside app would be more performant, it also would make deployment harder. A compatibility with smartphones is planed, but not ready yet.');
+    AppBody.MAIN.addParagraph('As of now the framework supports adding a Top bar for navigation (AppBar) and managing different page contents (AppBody). The style is very set in place although a light mode is developed on the side but not ready yet.');
+
+    AppBody.MAIN.addTitle('AppBar');
+    AppBody.MAIN.addParagraph('The AppBar can be put on one of the 4 sides of the screen. It is recommended to put it on the top as this is most common and users therefore are more likely to understand it. The AppBar needs to be imported like shown in the following:');
+    AppBody.MAIN.addCode('import { AppBar } from "./app-bar/bar.js";', 'js');
+    AppBody.MAIN.addParagraph('While manual creation is possible, it is recomended, to acces one of the prebuild bars.')
+    AppBody.MAIN.addCode(`AppBar.TOP.visible = true;
+AppBar.LEFT.visible = true;
+...`, 'js');
+    AppBody.MAIN.addParagraph('As shown above the AppBar needs to be set to visible to work properly. However, for performance reasons it is recomended to first setup the bar before setting it to visible as every change to the visible bar forces a full update.');
+    AppBody.MAIN.addParagraph('Example:'); // todo document methods
+    AppBody.MAIN.addCode(`const logo = new Image();
+logo.src = 'favicon.svg';
+logo.classList.add('clickable')
+logo.onclick = (e)=>{AppBody.setCurrent(mainPage)};
+
+AppBar.TOP.appendElement(logo);
+
+AppBar.TOP.addText('SimpleFw Docs', ()=>{AppBody.setCurrent(docPage)});
+AppBar.TOP.addText('Pytal2 Docs', ()=>{AppBody.setCurrent(pytalDocPage)});
+
+AppBar.TOP.visible = true;`,'js');
+
+AppBody.MAIN.addTitle('AppBody');
+AppBody.MAIN.addParagraph('The AppBody class is meant to create and manage different _AppBody objects. It needs to be imported like this:');
+AppBody.MAIN.addCode('import { AppBody } from "./page-body/body.js";', 'js');
+AppBody.MAIN.addParagraph('When creating a page the reference is returned. Although in the back it is only an upwards counting number referencing an array position, it should be stored, to avoid confusion and ensure compatability with upcomming versions.');
+AppBody.MAIN.addCode('const mainPage = AppBody.createBody();','js');
+AppBody.MAIN.addParagraph('To edit and display the body, you need to swith to it. Editing a body, that isn\'t displayed, is currently not possible.');
+AppBody.MAIN.addCode('AppBody.setCurrent(mainPage);','js');
+
 
 
   
