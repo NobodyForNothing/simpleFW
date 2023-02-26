@@ -2,20 +2,27 @@ import { AppBar } from "./app-bar/bar.js"
 import { AppBody } from "./page-body/body.js";
 
 function testWebsite() {
+  // create pages
+  const mainPage = AppBody.createBody();
+  const docPage = AppBody.createBody();
+  const pytalDocPage = AppBody.createBody();
+
+
   // TODO: fix light theme for code blocks
   const logo = new Image();
   logo.src = 'favicon.svg';
   logo.classList.add('clickable')
-  logo.onclick = (e)=>{};
+  logo.onclick = (e)=>{AppBody.setCurrent(mainPage)};
 
   AppBar.TOP.appendElement(logo);
 
-  AppBar.TOP.addText('SUBMENU1');
-  AppBar.TOP.addText('SUBMENU2');
+  AppBar.TOP.addText('SimpleFw Docs', ()=>{AppBody.setCurrent(docPage)});
+  AppBar.TOP.addText('Pytal2 Docs', ()=>{AppBody.setCurrent(pytalDocPage)});
 
   AppBar.TOP.visible = true;
-  AppBar.TOP.render();
 
+  // define mainpage
+  AppBody.setCurrent(mainPage);
   AppBody.MAIN.addTitle('Paragraph 1');
   AppBody.MAIN.addParagraph('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor neque vitae. Est pellentesque elit ullamcorper dignissim cras tincidunt. Orci ac auctor augue mauris augue neque gravida in. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Id neque aliquam vestibulum morbi. In pellentesque massa placerat duis ultricies lacus. Consequat nisl vel pretium lectus quam id leo. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Cras pulvinar mattis nunc sed. At risus viverra adipiscing at in. Enim sit amet venenatis urna cursus eget. At varius vel pharetra vel turpis nunc eget lorem. Donec enim diam vulputate ut pharetra sit amet. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.');
   AppBody.MAIN.addTitle('Paragraph 2');
@@ -53,6 +60,8 @@ for file_name in sorted(python_files):
             print ('    ' + line.rstrip())
 
     print()`, 'python');
+
+
   
 }
 

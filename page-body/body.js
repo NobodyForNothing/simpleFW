@@ -207,10 +207,41 @@ class _AppBody {
 }
 
 export class AppBody { // don't expose constructor
-  static MAIN = new _AppBody('main'); // only one can exist
+  static #allBodies = [];
+  /**
+   * @type {_AppBody} the current body
+   */
+  static MAIN = new _AppBody('main'); // TODO: don't expose body directly; make creation function
+  static CURRENT_ID = 0;
 
   static TYPE_TITLE = 0;
   static TYPE_PARAGRAPH = 1;
   static TYPE_CODE = 2;
   static TYPE_OTHER = -1;
+
+  /**
+   * Create a new empty body.
+   * @returns id of created body
+   */
+  static createBody() {
+    const bodyId = this.#allBodies.length;
+    this.#allBodies[bodyId] = new _AppBody(`mainbody_${bodyId}`);
+    return bodyId;
+  }
+
+  /**
+   * hide the old body and replace it with the specified body
+   * @param {number} id index of the body to set, which is returned by the createBody function. id < 0 hides the current body.
+   */
+  static setCurrent(id) {
+    console.log("SDF");
+    this.MAIN.visible = false;
+    this.MAIN._forceRender();
+    if(id < 0) return;
+    this.#allBodies[id].visible = true;
+    this.MAIN = this.#allBodies[id];
+    this.MAIN._forceRender();
+    this.CURRENT_ID = id;
+    console.log(this);
+  }
 }
