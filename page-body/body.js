@@ -109,6 +109,8 @@ class _AppBody {
       copyImg.href = '#';
       copyImg.classList.add('clickable');
       copyImg.classList.add('code-copy');
+      copyImg.width = 35;
+      copyImg.height = 29.16;
       copyImg.onclick = e => {navigator.clipboard.writeText(text)}
       codeContainer.appendChild(copyImg);
     }
