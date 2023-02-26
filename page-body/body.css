@@ -26,3 +26,34 @@
   padding-left: 10px;
   margin-top: -15px;
 }
+
+.code {
+  position: relative;
+  padding: 10px;
+  padding-right: 20px;
+  margin-top: 20px;
+  background-color: var(--code-bg);
+  border-width: 10px;
+  border-radius: 10px;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.code .clickable {
+  background-color: transparent;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 15%;
+}
+.code .clickable:hover {
+  background-color: var(--button-bg-hover);
+}
+
+.code-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  filter: invert(var(--icon-filter-invert));
+}

@@ -2,6 +2,7 @@ import { AppBar } from "./app-bar/bar.js"
 import { AppBody } from "./page-body/body.js";
 
 function testWebsite() {
+  // TODO: fix light theme for code blocks
   const logo = new Image();
   logo.src = 'favicon.svg';
   logo.classList.add('clickable')
@@ -15,7 +16,6 @@ function testWebsite() {
   AppBar.TOP.visible = true;
   AppBar.TOP.render();
 
-  
   AppBody.MAIN.addTitle('Paragraph 1');
   AppBody.MAIN.addParagraph('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor neque vitae. Est pellentesque elit ullamcorper dignissim cras tincidunt. Orci ac auctor augue mauris augue neque gravida in. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Id neque aliquam vestibulum morbi. In pellentesque massa placerat duis ultricies lacus. Consequat nisl vel pretium lectus quam id leo. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Cras pulvinar mattis nunc sed. At risus viverra adipiscing at in. Enim sit amet venenatis urna cursus eget. At varius vel pharetra vel turpis nunc eget lorem. Donec enim diam vulputate ut pharetra sit amet. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.');
   AppBody.MAIN.addTitle('Paragraph 2');
@@ -30,6 +30,30 @@ function testWebsite() {
   AppBody.MAIN.addParagraph('Euismod quis viverra nibh cras pulvinar mattis nunc sed blandit. Dolor sit amet consectetur adipiscing elit. Molestie at elementum eu facilisis sed odio morbi quis. Ipsum dolor sit amet consectetur adipiscing. Turpis nunc eget lorem dolor sed viverra. A lacus vestibulum sed arcu non odio euismod lacinia. Est sit amet facilisis magna etiam. Habitasse platea dictumst vestibulum rhoncus. Ultrices sagittis orci a scelerisque. Cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum. Volutpat commodo sed egestas egestas fringilla phasellus.');
   AppBody.MAIN.visible = true;
   AppBody.MAIN.render();
+
+  AppBody.MAIN.addTitle('Embeding code')
+  AppBody.MAIN.addCode(document.documentElement.innerHTML, 'html');
+  AppBody.MAIN.addTitle('Embeding python code')
+  // note that there is no indentation in the string
+  AppBody.MAIN.addCode(`# lines: Import, regular expressions 
+import re
+for test_string in ['555-1212', 'ILL-EGAL']:
+    if re.match(r'^\\d{3}-\\d{4}$', test_string):
+        print (test_string, 'is a valid US local phone number')
+    else:
+        print (test_string, 'rejected')
+
+# indent your Python code to put into an email
+import glob  # glob supports Unix style pathname extensions
+python_files = glob.glob('*.py')
+for file_name in sorted(python_files):
+    print ('    ------' + file_name)
+
+    with open(file_name) as f:
+        for line in f:
+            print ('    ' + line.rstrip())
+
+    print()`, 'python');
   
 }
 

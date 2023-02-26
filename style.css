@@ -19,10 +19,8 @@ body {
   --bar-thickness-px: 50px;
   font-family: 'VarelaRound-Regular'; /*'Quicksand'*/
   text-align: justify;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+  width:100%;
+  height:100%;
 }
 h1 {
   margin-bottom: -12px;
@@ -46,8 +44,10 @@ a:visited {
   --bg-secondary: #009efa; /*#f9f9fb for better white*/
   --bg-text: var(--bg-primary);
   --button-bg: var(--bg-primary);
-  --button-bg-hover: #aaa;
+  --button-bg-hover: #aaaaaa85;
   --link-unvisited: #009efa;
+  --code-bg: #fffbb7;
+  --icon-filter-invert: 0%;
 
   color: var(--primary);
   background-color: var(--bg-primary);
@@ -59,8 +59,10 @@ a:visited {
   --bg-secondary: #005C45;
   --bg-text: #101010;
   --button-bg: var(--bg-secondary);
-  --button-bg-hover: #576164AA;
+  --button-bg-hover: #57616485;
   --link-unvisited: #009efa;
+  --code-bg: #000;
+  --icon-filter-invert: 100%;
 
   color: var(--primary);
   background-color: var(--bg-primary);

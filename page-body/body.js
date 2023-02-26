@@ -8,14 +8,10 @@ class _AppBody {
     if (opt_id) this.#id=opt_id;
     else this.#id = ''+Math.random();
     this.visible = visible;
-    
-    console.log(this);
   }
 
   addElementFromJson(element, append) {
     // check for required attributes
-    console.log(element);
-    console.log(this);
     if (!element || isNaN(element.type)) return console.error('Elements added to AppBody must declare type and content');
     // check if element.content is dom object
     if (!(element.content instanceof HTMLElement)) return console.error('element.content must be instance of HTMLElement');
@@ -61,9 +57,38 @@ class _AppBody {
       position: opt_position
     }, append)
   }
+  addCode(text, language, copyBtn=true, append=true, opt_position) {
+    // create code block
+    const codeBlockHtml = hljs.highlight(text, {language: language, ignoreIllegals: true}).value;
+    const code = document.createElement('code');
+    code.innerHTML = codeBlockHtml;
+
+    // add code to container
+    const codeContainer = document.createElement('pre');
+    codeContainer.appendChild(code);
+    codeContainer.classList.add('code');
+
+    if (copyBtn) {
+      // add copy buttons
+      const copyImg = new Image();
+      copyImg.src = '../res/icons/content_copy.svg';
+      copyImg.href = '#';
+      copyImg.classList.add('clickable');
+      copyImg.classList.add('code-copy');
+      copyImg.onclick = e => {navigator.clipboard.writeText(text)}
+      codeContainer.appendChild(copyImg);
+    }
+    
+
+    this.addElementFromJson({
+      type: AppBody.TYPE_CODE,
+      content: codeContainer,
+      position: opt_position
+    }, append);
+  }
 
   render() {
-    if (this.#rendered) console.log('Ds');
+    if (this.#rendered) return;
     this._forceRender();
   }
   _forceRender() {
@@ -144,5 +169,6 @@ export class AppBody { // don't expose constructor
 
   static TYPE_TITLE = 0;
   static TYPE_PARAGRAPH = 1;
+  static TYPE_CODE = 2;
   static TYPE_OTHER = -1;
 }
