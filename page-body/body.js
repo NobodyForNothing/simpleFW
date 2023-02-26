@@ -105,7 +105,7 @@ class _AppBody {
     if (copyBtn) {
       // add copy buttons
       const copyImg = new Image();
-      copyImg.src = '../res/icons/content_copy.svg';
+      copyImg.src = './res/icons/content_copy.svg';
       copyImg.href = '#';
       copyImg.classList.add('clickable');
       copyImg.classList.add('code-copy');
