@@ -143,38 +143,9 @@ class _AppBody {
     const textBody = document.createElement('article');
     textBody.classList.add('textbody');
     textBody.id = this.#id;
-    
-    // container type can support automated content detection
-    var lastSection = document.createElement('section');
-    this.#elements.forEach(element => {
-      switch (element.type) {
-        case AppBody.TYPE_TITLE:
-          // might create empty section, if beginns with title
-          textBody.appendChild(lastSection);
-          lastSection = document.createElement('section');
-          
-          // to fix skipping to the section, a invisible element is added, that maintains the offset of the top bar
-          const tocAnchor = document.createElement('a');
-          tocAnchor.classList.add('toc-document-anchor');
-          tocAnchor.id = element.content.firstChild.textContent.toLowerCase().replace(' ', '-');
-          lastSection.append(tocAnchor);
-          lastSection.appendChild(element.content);
-          break;
-        case AppBody.TYPE_PARAGRAPH:
-          lastSection.appendChild(element.content);
-          break;
-        default:
-          // treating other types as paragraph
-          lastSection.appendChild(element.content);
-          break;
-      }
-    });
-    textBody.appendChild(lastSection);
 
-    document.body.appendChild(textBody);
-
+    /* toc */
     // add list of headings in new element, to make navigation simpler
-    // TODO: fix overflow when scaled big; offset anchor
     const oldNavMenu = document.getElementsByClassName('toc-menu')[0];
     if(oldNavMenu) oldNavMenu.remove();
 
@@ -201,7 +172,37 @@ class _AppBody {
       navList.appendChild(elementListItem);
     });
     navMenu.appendChild(navList);
-    document.body.appendChild(navMenu);
+    textBody.appendChild(navMenu); // needs to be added before body to support styling for devices with small screen width
+    
+    /* body */
+    // container type can support automated content detection
+    var lastSection = document.createElement('section');
+    this.#elements.forEach(element => {
+      switch (element.type) {
+        case AppBody.TYPE_TITLE:
+          // might create empty section, if beginns with title
+          textBody.appendChild(lastSection);
+          lastSection = document.createElement('section');
+          
+          // to fix skipping to the section, a invisible element is added, that maintains the offset of the top bar
+          const tocAnchor = document.createElement('a');
+          tocAnchor.classList.add('toc-document-anchor');
+          tocAnchor.id = element.content.firstChild.textContent.toLowerCase().replace(' ', '-');
+          lastSection.append(tocAnchor);
+          lastSection.appendChild(element.content);
+          break;
+        case AppBody.TYPE_PARAGRAPH:
+          lastSection.appendChild(element.content);
+          break;
+        default:
+          // treating other types as paragraph
+          lastSection.appendChild(element.content);
+          break;
+      }
+    });
+
+    textBody.appendChild(lastSection);
+    document.body.appendChild(textBody);
 
     this.#rendered = true;
   }
@@ -260,7 +261,6 @@ export class AppBody { // don't expose constructor
     this.MAIN = this.#allBodies[id];
     this.MAIN._forceRender();
     this.CURRENT_ID = id;
-    console.log(this);
   }
 
   /**
