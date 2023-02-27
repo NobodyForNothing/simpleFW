@@ -36,9 +36,6 @@ a {
   font-weight: 600;
   color: var(--link-unvisited);
 }
-a:visited {
-
-}
 
 .light-theme {
   --primary: #000;
