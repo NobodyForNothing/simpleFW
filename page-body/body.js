@@ -253,7 +253,6 @@ export class AppBody { // don't expose constructor
    * @param {number} id index of the page to set, which is returned by the createBody function. id < 0 hides the current page.
    */
   static setCurrent(id) {
-    console.log("SDF");
     this.MAIN.visible = false;
     this.MAIN._forceRender();
     if(id < 0) return;
@@ -262,5 +261,19 @@ export class AppBody { // don't expose constructor
     this.MAIN._forceRender();
     this.CURRENT_ID = id;
     console.log(this);
+  }
+
+  /**
+   * ensures all old bodies are removed and forces the current one to rerender
+   */
+  static forceUpdate() {
+  // force remove all remaining 
+  const textBodys = document.getElementsByClassName('textbody');
+  for (let i = 0; i < textBodys.length; i++) {
+    textBodys.item(i).remove();
+  }
+
+  // rerender current
+  this.MAIN._forceRender();
   }
 }

@@ -105,7 +105,7 @@ AppBar.TOP.visible = true;`,'js');
   });
     // TODO: why is this neccessary? fixme
     AppBody.setCurrent(docPage);
-    AppBody.setCurrent(docPage);
+    AppBody.forceUpdate();
 
 
 
