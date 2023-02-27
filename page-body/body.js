@@ -237,8 +237,20 @@ export class AppBody { // don't expose constructor
   }
 
   /**
-   * hide the old body and replace it with the specified body
-   * @param {number} id index of the body to set, which is returned by the createBody function. id < 0 hides the current body.
+   * Change the content of a page, without loading it.
+   * @param {number} id index of the page to setup, which is returned by the createBody function
+   * @param {Function} setupFunction function that takes a _AppBody page as an argument and returns this page with the changes applied
+   */
+  static setupPage(id, setupFunction) {
+    if (!this.#allBodies[id]) return console.error('Invalid page id');
+    const result = setupFunction(this.#allBodies[id]);
+    if (!(result instanceof _AppBody)) return console.error('Return value of setupFunction is not of type _AppBody.');
+    this.#allBodies[id] = result;
+  }
+
+  /**
+   * hide the old body and replace it with the specified page
+   * @param {number} id index of the page to set, which is returned by the createBody function. id < 0 hides the current page.
    */
   static setCurrent(id) {
     console.log("SDF");
