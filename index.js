@@ -1,4 +1,5 @@
 import { AppBar } from "./app-bar/bar.js";
+import { DarkLightSwitch } from "./elements/darkLightSwitch.js";
 import { AppBody } from "./page-body/body.js";
 
 function testWebsite() {
@@ -107,9 +108,7 @@ AppBar.TOP.visible = true;`,'js');
     AppBody.setCurrent(docPage);
     AppBody.forceUpdate();
 
-
-
-  
+    // document.body.appendChild(DarkLightSwitch.getSwitch());
 }
 
 document.body.onload = testWebsite;
