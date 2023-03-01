@@ -54,7 +54,7 @@ export class DarkLightSwitch {
   }
 
   /**
-   * toggles dark-light mode if last toggle is less than half a second ago
+   * toggles dark-light mode. The slider might be set to a diferent position as the site, when spammed
    * @returns {boolean} success
    */
   static toggle() {
