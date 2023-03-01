@@ -1,6 +1,5 @@
 /**
  * class to manage darkmode and lightmode
- * BUGS: slider needs to be added again, when changing body
  */
 export class DarkLightSwitch {
   static #isDark=true;

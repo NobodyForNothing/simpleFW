@@ -22,6 +22,10 @@ function testWebsite() {
 
   AppBar.TOP.visible = true;
 
+  const dlSwitch = DarkLightSwitch.getSwitch();
+  dlSwitch.classList.add('force-lower-right');
+  document.body.appendChild(dlSwitch);
+
   // define mainpage
   AppBody.setupPage(mainPage, (p)=>{
     p.addParagraph('You stumbled uppon this testing page, didn\'t you...');
@@ -106,9 +110,6 @@ AppBar.TOP.visible = true;`,'js');
   });
     AppBody.setCurrent(docPage);
     AppBody.forceUpdate();
-
-    document.body.appendChild(DarkLightSwitch.getSwitch());
 }
 
 document.body.onload = testWebsite;
-document.body.appendChild(DarkLightSwitch.getSwitch());

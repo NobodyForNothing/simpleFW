@@ -64,11 +64,17 @@ a {
   --link-unvisited: #009efa;
   --code-bg: #000;
   --icon-filter-invert: 100%;
-  --switch-disabled: #777;
-  --switch-enabled: #009efa;
+  --switch-disabled: #666;
+  --switch-enabled: #004268;
 
   color: var(--primary);
   background-color: var(--bg-primary);
+}
+
+.force-lower-right {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
 }
 
 /* css for elements */
@@ -77,6 +83,7 @@ a {
   display: inline-block;
   width: 60px;
   height: 34px;
+  transform: scale(0.7);
 }
 .switch > input { 
   opacity: 0;
