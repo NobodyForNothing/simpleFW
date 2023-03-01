@@ -42,7 +42,16 @@ export class DarkLightSwitch {
       .find((row) => row.startsWith('darkmode='))
       ?.split('=')[1];
       if (saved === '0') this.#isDark = false;
-      else this.#isDark = true;
+      else if(saved === '1') this.#isDark = true;
+      else { // the user never been to the side, use system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          /* this doesn't check for changes in preference, as manual changing between darkmode and
+          light mode is possible and would be overiden. */
+          this.#isDark = true;
+        } else {
+          this.#isDark = false;
+        }
+      }
   }
 
   /**
