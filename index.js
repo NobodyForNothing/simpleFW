@@ -104,11 +104,11 @@ AppBar.TOP.visible = true;`,'js');
       p.addCode('AppBody.setCurrent(mainPage);','js');
       return p;
   });
-    // TODO: why is this neccessary? fixme
     AppBody.setCurrent(docPage);
     AppBody.forceUpdate();
 
-    // document.body.appendChild(DarkLightSwitch.getSwitch());
+    document.body.appendChild(DarkLightSwitch.getSwitch());
 }
 
 document.body.onload = testWebsite;
+document.body.appendChild(DarkLightSwitch.getSwitch());

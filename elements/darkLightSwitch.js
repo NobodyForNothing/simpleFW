@@ -1,8 +1,9 @@
 /**
  * class to manage darkmode and lightmode
+ * BUGS: slider wont move; slider needs to be added again, when changing body
  */
 export class DarkLightSwitch {
-  static #isDark;
+  static #isDark=true;
   static #lastToggle=0;
 
   /**
@@ -32,14 +33,20 @@ export class DarkLightSwitch {
    * apply the last state saved in the cookies
    */
   static loadCookies() {
-
+    const saved = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('darkmode='))
+      ?.split('=')[1];
+      if (saved === '0') this.#isDark = false;
+      else this.#isDark = true;
   }
 
   /**
    * save current state as cookie
    */
   static setCookies() {
-
+    if(this.#isDark) document.cookie = "darkmode=1; SameSite=lax; expires=Fri, 31 Dec 9999 23:59:59 GMT"
+    else document.cookie = "darkmode=0; SameSite=lax; expires=Fri, 31 Dec 9999 23:59:59 GMT"; ; 
   }
 
   /**
@@ -47,10 +54,10 @@ export class DarkLightSwitch {
    * @returns {boolean} success
    */
   static toggle() {
-    if((Date.now()-this.#lastToggle)<5000) return false;
+    if((Date.now()-this.#lastToggle)<50) return false; // todo: remove timer
     this.#lastToggle = Date.now();
 
-    this.#isDark != this.#isDark;
+    this.#isDark = !this.#isDark;
     this.#updateLayouts();
     this.setCookies();
     return true;
