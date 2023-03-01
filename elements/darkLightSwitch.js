@@ -1,6 +1,6 @@
 /**
  * class to manage darkmode and lightmode
- * BUGS: slider wont move; slider needs to be added again, when changing body
+ * BUGS: slider needs to be added again, when changing body
  */
 export class DarkLightSwitch {
   static #isDark=true;
@@ -23,9 +23,11 @@ export class DarkLightSwitch {
     switchContainer.appendChild(slider);
 
     // logic
-    switchContainer.onclick = ()=>DarkLightSwitch.toggle();
+    switchContainer.addEventListener('mousedown',(e)=>{
+      DarkLightSwitch.toggle();
+    });
     
-  
+
     return switchContainer;
   }
 
@@ -54,9 +56,6 @@ export class DarkLightSwitch {
    * @returns {boolean} success
    */
   static toggle() {
-    if((Date.now()-this.#lastToggle)<50) return false; // todo: remove timer
-    this.#lastToggle = Date.now();
-
     this.#isDark = !this.#isDark;
     this.#updateLayouts();
     this.setCookies();
