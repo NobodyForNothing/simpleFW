@@ -47,8 +47,8 @@ a {
   --link-unvisited: #009efa;
   --code-bg: #fffbb7;
   --icon-filter-invert: 0%;
-  --switch-disabled: #ccc;
-  --switch-enabled: #009efa;
+  --switch-disabled: #666;
+  --switch-enabled: #0087d5;
 
   color: var(--primary);
   background-color: var(--bg-primary);
@@ -65,7 +65,7 @@ a {
   --code-bg: #000;
   --icon-filter-invert: 100%;
   --switch-disabled: #666;
-  --switch-enabled: #004268;
+  --switch-enabled: #0087d5;
 
   color: var(--primary);
   background-color: var(--bg-primary);
