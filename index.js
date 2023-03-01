@@ -1,4 +1,5 @@
 import { AppBar } from "./app-bar/bar.js";
+import { DarkLightSwitch } from "./elements/darkLightSwitch.js";
 import { AppBody } from "./page-body/body.js";
 
 function testWebsite() {
@@ -20,6 +21,10 @@ function testWebsite() {
   AppBar.TOP.addText('Pytal2 Docs', ()=>{AppBody.setCurrent(pytalDocPage)});
 
   AppBar.TOP.visible = true;
+
+  const dlSwitch = DarkLightSwitch.getSwitch();
+  dlSwitch.classList.add('force-lower-right');
+  document.body.appendChild(dlSwitch);
 
   // define mainpage
   AppBody.setupPage(mainPage, (p)=>{
@@ -103,13 +108,8 @@ AppBar.TOP.visible = true;`,'js');
       p.addCode('AppBody.setCurrent(mainPage);','js');
       return p;
   });
-    // TODO: why is this neccessary? fixme
     AppBody.setCurrent(docPage);
     AppBody.forceUpdate();
-
-
-
-  
 }
 
 document.body.onload = testWebsite;
