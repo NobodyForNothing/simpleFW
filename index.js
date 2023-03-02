@@ -8,8 +8,6 @@ function testWebsite() {
   const docPage = AppBody.createBody();
   const pytalDocPage = AppBody.createBody();
 
-
-  // TODO: fix light theme for code blocks
   const logo = new Image();
   logo.src = 'favicon.svg';
   logo.classList.add('clickable')
