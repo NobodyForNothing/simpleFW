@@ -122,6 +122,15 @@ class _AppBody {
       position: opt_position
     }, append);
   }
+  /**
+   * add full width image to page body
+   * @param {*} imageLocation where to find the image file
+   * @param {*} append 
+   * @param {*} opt_position ignored when append is true 
+   */
+  addImage(imageLocation, append=true, opt_position) {
+
+  }
 
   /**
    * manually render page
