@@ -124,12 +124,20 @@ class _AppBody {
   }
   /**
    * add full width image to page body
-   * @param {*} imageLocation where to find the image file
-   * @param {*} append 
-   * @param {*} opt_position ignored when append is true 
+   * @param {string} imageLocation where to find the image file, may be url
+   * @ param {number} [height] max height
+   * @param {boolean} append 
+   * @param {number} [opt_position] ignored when append is true 
    */
   addImage(imageLocation, append=true, opt_position) {
-
+    const image = new Image();
+    image.src = imageLocation;
+    image.classList.add('body-image');
+    this.addElementFromJson({
+      type: AppBody.TYPE_GRAPHIC,
+      content: image,
+      position: opt_position
+    }, append);
   }
 
   /**
@@ -234,6 +242,7 @@ export class AppBody { // don't expose constructor
   static TYPE_TITLE = 0;
   static TYPE_PARAGRAPH = 1;
   static TYPE_CODE = 2;
+  static TYPE_GRAPHIC = 3;
   static TYPE_OTHER = -1;
 
   /**

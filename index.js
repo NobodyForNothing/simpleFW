@@ -104,6 +104,8 @@ AppBar.TOP.visible = true;`,'js');
       p.addCode('const mainPage = AppBody.createBody();','js');
       p.addParagraph('To edit and display the body, you need to swith to it. Editing a body, that isn\'t displayed, is currently not possible.');
       p.addCode('AppBody.setCurrent(mainPage);','js');
+      p.addImage('favicon.svg');
+      p.addImage('https://images.pexels.com/photos/2603464/pexels-photo-2603464.jpeg');
       return p;
   });
     AppBody.setCurrent(docPage);

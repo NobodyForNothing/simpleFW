@@ -73,3 +73,8 @@
   right: 0;
   filter: invert(var(--icon-filter-invert));
 }
+
+.body-image {
+  object-fit: cover;
+  width: 100%;
+}
