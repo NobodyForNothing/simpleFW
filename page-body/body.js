@@ -123,7 +123,7 @@ class _AppBody {
     }, append);
   }
   /**
-   * add full width image to page body
+   * add full width image to page body. As of now, loading is not guaranteed
    * @param {string} imageLocation where to find the image file, may be url
    * @ param {number} [height] max height
    * @param {boolean} append 
