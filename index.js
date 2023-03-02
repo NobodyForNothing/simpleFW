@@ -64,6 +64,8 @@ for file_name in sorted(python_files):
             print ('    ' + line.rstrip())
 
     print()`, 'python');
+    p.addTitle('images');
+    p.addImage('https://images.pexels.com/photos/5121664/pexels-photo-5121664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); 
 
     return p;
   });
@@ -104,8 +106,6 @@ AppBar.TOP.visible = true;`,'js');
       p.addCode('const mainPage = AppBody.createBody();','js');
       p.addParagraph('To edit and display the body, you need to swith to it. Editing a body, that isn\'t displayed, is currently not possible.');
       p.addCode('AppBody.setCurrent(mainPage);','js');
-      p.addImage('favicon.svg');
-      p.addImage('https://images.pexels.com/photos/2603464/pexels-photo-2603464.jpeg');
       return p;
   });
     AppBody.setCurrent(docPage);
