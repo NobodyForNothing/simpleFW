@@ -125,14 +125,42 @@ class _AppBody {
   /**
    * add full width image to page body. As of now, loading is not guaranteed
    * @param {string} imageLocation where to find the image file, may be url
+   * @param {number} [maxRetries] maximum amount of times the image tries to reload, this is useful for images from external sources
    * @ param {number} [height] max height
    * @param {boolean} append 
    * @param {number} [opt_position] ignored when append is true 
    */
-  addImage(imageLocation, append=true, opt_position) {
+  addImage(imageLocation, maxRetries=3, append=true, opt_position) {
     const image = new Image();
     image.src = imageLocation;
     image.classList.add('body-image');
+    image.setAttribute('dt-retry', maxRetries); // retries
+
+    const imgErrorFunction = function () {
+      try {
+          var allowRetry = false;
+          var r = 3;
+          if (this.hasAttribute('dt-retry')) {
+              r = parseInt(this.getAttribute('dt-retry'));
+              r -= 1;
+              this.setAttribute('dt-retry', r);
+              if (r <= 0) {
+                  allowRetry = false;
+              }
+          }
+
+          if (allowRetry) {
+              var temp = new Image();
+              temp.setAttribute('dt-retry', r);
+              temp.onerror = imgErrorFunction;
+              temp.src = this.src;
+          }
+      } catch (e) {
+
+      }
+  }
+    image.onerror = imgErrorFunction;
+
     this.addElementFromJson({
       type: AppBody.TYPE_GRAPHIC,
       content: image,
